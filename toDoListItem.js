@@ -1,11 +1,29 @@
 export default class ToDoListItem {
-  constructor() {
-    this.list = document.querySelector(".list");
-    this.input = document.querySelector(".input");
-    this.createItem();
+  constructor(list) {
+    this.list = list;
+    this.init();
   }
-  createItem = () => {
-    this.list.innerHTML += `<li class="item">${this.input.value}<button class="close" type="button"></button></li>`;
-    this.input.value = "";
-  };
+  init() {
+    this.lineThrough();
+  }
+
+  createNewItem(text) {
+    this.list.innerHTML += `<li class="item">${text}<button class="close" type="button"></button></li>`;
+  }
+
+  lineThrough() {
+    this.list.addEventListener("click", (e) => {
+      e.preventDefault();
+      let target = e.target;
+      if (target && target.classList.contains("close")) {
+        const close = this.list.querySelectorAll(".close");
+        close.forEach((item) => {
+          if (target == item) {
+            item.parentElement.classList.toggle("line-through");
+            item.classList.toggle("open");
+          }
+        });
+      }
+    });
+  }
 }

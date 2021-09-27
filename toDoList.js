@@ -2,30 +2,44 @@ import ToDoListItem from "./toDoListItem.js";
 
 export default class ToDoList {
   constructor() {
-    this.countToDo = 0;
-    this.input = document.querySelector(".input");
-    this.btn = document.querySelector(".button");
-    this.list = document.querySelector(".list");
-    this.count = document.querySelector(".count");
-    this.click();
+    this.toDoList = document.querySelectorAll(".to-do-list");
+
+    this.init();
   }
 
-  click = () => {
+  init() {
+    if (!this.toDoList.length) return;
+
+    this.toDoList.forEach((item) => {
+      this.initToDoList(item);
+    });
+  }
+
+  initToDoList(item) {
+    this.countToDo = 0;
+    this.input = item.querySelector(".input");
+    this.btn = item.querySelector(".button");
+    this.count = item.querySelector(".count");
+    this.list = item.querySelector(".list");
+    this.toDoListItem = new ToDoListItem(this.list);
+
     this.btn.addEventListener("click", (e) => {
       e.preventDefault();
       if (this.input.value != "") {
-        const toDoListItem = new ToDoListItem();
+        this.toDoListItem.createNewItem(this.input.value);
+        this.input.value = "";
         this.viewCount();
-        this.allCount();
       }
     });
-  };
-  viewCount = (number = 1) => {
-    this.countToDo += number;
-    this.count.innerHTML = `Count: ${this.countToDo}`;
-  };
+    this.changeCount();
+  }
 
-  allCount = () => {
+  viewCount(number = 1) {
+    this.countToDo += number;
+    this.count.innerHTML = `${this.countToDo}`;
+  }
+
+  changeCount() {
     this.list.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
@@ -34,17 +48,15 @@ export default class ToDoList {
         const open = this.list.querySelectorAll(".open");
         close.forEach((item) => {
           if (target == item) {
-            item.parentElement.classList.toggle("line-through");
-            item.classList.toggle("open");
-            this.viewCount(-1);
+            this.viewCount(1);
           }
         });
         open.forEach((item) => {
           if (target == item) {
-            this.viewCount(2);
+            this.viewCount(-2);
           }
         });
       }
     });
-  };
+  }
 }
