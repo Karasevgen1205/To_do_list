@@ -16,44 +16,56 @@ export default class ToDoList {
   }
 
   initToDoList(item) {
-    this.countToDo = 0;
-    this.input = item.querySelector(".input");
-    this.btn = item.querySelector(".button");
-    this.count = item.querySelector(".count");
-    this.list = item.querySelector(".list");
-    this.toDoListItem = new ToDoListItem(this.list);
+    let countToDo = 0;
 
-    this.btn.addEventListener("click", (e) => {
+    const input = item.querySelector(".input");
+    const btn = item.querySelector(".button");
+    const count = item.querySelector(".count");
+    const list = item.querySelector(".list");
+    const toDoListItem = new ToDoListItem(list);
+
+    btn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (this.input.value != "") {
-        this.toDoListItem.createNewItem(this.input.value);
-        this.input.value = "";
-        this.viewCount();
+      if (input.value != "") {
+        toDoListItem.createNewItem(input.value);
+        input.value = "";
+        // this.viewCount(1, count, countToDo);
+        countToDo += 1;
+        count.innerHTML = `${countToDo}`;
+        console.log(countToDo);
       }
     });
-    this.changeCount();
+    this.changeCount(list, countToDo, count);
   }
 
-  viewCount(number = 1) {
-    this.countToDo += number;
-    this.count.innerHTML = `${this.countToDo}`;
+  viewCount(number, count, countToDo) {
+    countToDo += number;
+    count.innerHTML = `${countToDo}`;
   }
 
-  changeCount() {
-    this.list.addEventListener("click", (e) => {
+  changeCount(list, countToDo, count) {
+    list.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
-      if (target && target.classList.contains("close")) {
-        const close = this.list.querySelectorAll(".close");
-        const open = this.list.querySelectorAll(".open");
-        close.forEach((item) => {
+      if (target && target.classList.contains("item-btn")) {
+        const run = list.querySelectorAll(".run");
+        const stop = list.querySelectorAll(".stop");
+        run.forEach((item) => {
           if (target == item) {
-            this.viewCount(1);
+            // this.viewCount(1, countToDo, count);
+            countToDo += 1;
+            // count.innerHTML = `${countToDo}`;
+            // console.log(1);
+            console.log(countToDo);
           }
         });
-        open.forEach((item) => {
+        stop.forEach((item) => {
           if (target == item) {
-            this.viewCount(-2);
+            // this.viewCount(-1, countToDo, count);
+            countToDo -= 1;
+            // count.innerHTML = `${countToDo}`;
+            // console.log(-1);
+            console.log(countToDo);
           }
         });
       }

@@ -8,19 +8,28 @@ export default class ToDoListItem {
   }
 
   createNewItem(text) {
-    this.list.innerHTML += `<li class="item">${text}<button class="close" type="button"></button></li>`;
+    this.list.innerHTML += `<li class="item">${text}<button class="item-btn run" type="button"></button></li>`;
   }
 
   lineThrough() {
     this.list.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
-      if (target && target.classList.contains("close")) {
-        const close = this.list.querySelectorAll(".close");
-        close.forEach((item) => {
+      if (target && target.classList.contains("item-btn")) {
+        const run = this.list.querySelectorAll(".run");
+        const stop = this.list.querySelectorAll(".stop");
+        run.forEach((item) => {
           if (target == item) {
             item.parentElement.classList.toggle("line-through");
-            item.classList.toggle("open");
+            item.classList.remove("run");
+            item.classList.add("stop");
+          }
+        });
+        stop.forEach((item) => {
+          if (target == item) {
+            item.parentElement.classList.toggle("line-through");
+            item.classList.remove("stop");
+            item.classList.add("run");
           }
         });
       }
