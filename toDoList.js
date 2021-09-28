@@ -29,21 +29,11 @@ export default class ToDoList {
       if (input.value != "") {
         toDoListItem.createNewItem(input.value);
         input.value = "";
-        // this.viewCount(1, count, countToDo);
         countToDo += 1;
         count.innerHTML = `${countToDo}`;
-        console.log(countToDo);
       }
     });
-    this.changeCount(list, countToDo, count);
-  }
 
-  viewCount(number, count, countToDo) {
-    countToDo += number;
-    count.innerHTML = `${countToDo}`;
-  }
-
-  changeCount(list, countToDo, count) {
     list.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
@@ -52,23 +42,51 @@ export default class ToDoList {
         const stop = list.querySelectorAll(".stop");
         run.forEach((item) => {
           if (target == item) {
-            // this.viewCount(1, countToDo, count);
             countToDo += 1;
-            // count.innerHTML = `${countToDo}`;
-            // console.log(1);
-            console.log(countToDo);
+            count.innerHTML = `${countToDo}`;
           }
         });
         stop.forEach((item) => {
           if (target == item) {
-            // this.viewCount(-1, countToDo, count);
             countToDo -= 1;
-            // count.innerHTML = `${countToDo}`;
-            // console.log(-1);
-            console.log(countToDo);
+            count.innerHTML = `${countToDo}`;
           }
         });
       }
     });
   }
+
+  // viewCount(number, count, countToDo) {
+  //   countToDo += number;
+  //   count.innerHTML = `${countToDo}`;
+  // }
+
+  // changeCount(list, countToDo, count) {
+  //   list.addEventListener("click", (e) => {
+  //     e.preventDefault();
+  //     let target = e.target;
+  //     if (target && target.classList.contains("item-btn")) {
+  //       const run = list.querySelectorAll(".run");
+  //       const stop = list.querySelectorAll(".stop");
+  //       run.forEach((item) => {
+  //         if (target == item) {
+  //           // this.viewCount(1, countToDo, count);
+  //           countToDo += 1;
+  //           // count.innerHTML = `${countToDo}`;
+  //           // console.log(1);
+  //           console.log(countToDo);
+  //         }
+  //       });
+  //       stop.forEach((item) => {
+  //         if (target == item) {
+  //           // this.viewCount(-1, countToDo, count);
+  //           countToDo -= 1;
+  //           // count.innerHTML = `${countToDo}`;
+  //           // console.log(-1);
+  //           console.log(countToDo);
+  //         }
+  //       });
+  //     }
+  //   });
+  // }
 }
