@@ -4,14 +4,13 @@ export default class ToDoList {
   constructor() {
     this.container = document.querySelector(".container");
     this.addNewList = document.querySelector(".btn-add-new-list");
+    this.toDoList = document.querySelectorAll(".to-do-list");
 
     this.init();
     this.createNewList();
   }
 
   init() {
-    this.toDoList = document.querySelectorAll(".to-do-list");
-
     if (!this.toDoList.length) return;
 
     this.toDoList.forEach((item) => {
@@ -96,7 +95,8 @@ export default class ToDoList {
         </div>
         `
       );
-      this.init();
+      const toDoList = document.querySelectorAll(".to-do-list");
+      this.initToDoList(toDoList[toDoList.length - 1]);
     });
   }
 }
