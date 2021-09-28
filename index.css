@@ -17,6 +17,27 @@ p {
     margin: 0 auto;
 }
 
+.block-btn {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 50px 0;
+}
+
+.btn-add-new-list {
+    background-color: chartreuse;
+}
+
+.to-do-list__header {
+    position: relative;
+}
+
+.btn-remove-list {
+    position: absolute;
+    top: 11px;
+    right: 25%;
+    background-color: crimson;
+}
+
 .to-do-list {
     margin: 50px 0;
 }
@@ -53,7 +74,8 @@ p {
     width: 20px;
     height: 20px;
     top: 0;
-    right: 0;
+    right: 40px;
+    cursor: pointer;
 }
 
 .run::before {
@@ -89,7 +111,8 @@ p {
     width: 20px;
     height: 20px;
     top: 0;
-    right: 0;
+    right: 40px;
+    cursor: pointer;
 }
 
 .stop::before {
@@ -116,6 +139,16 @@ p {
     border-radius: 20%;
     background-color: burlywood;
     transform: rotate(-45deg);
+}
+
+.del {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 0px;
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .line-through {

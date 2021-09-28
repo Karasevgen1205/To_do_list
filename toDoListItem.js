@@ -8,7 +8,17 @@ export default class ToDoListItem {
   }
 
   createNewItem(text) {
-    this.list.innerHTML += `<li class="item">${text}<button class="item-btn run" type="button"></button></li>`;
+    this.list.innerHTML += `
+      <li class="item">
+        ${text}
+        <button class="item-btn run" type="button"></button>
+        <i class="item-btn del bi-trash-fill"></i>
+      </li>
+    `;
+  }
+
+  delItem(item) {
+    item.parentElement.remove();
   }
 
   lineThrough() {
@@ -18,6 +28,7 @@ export default class ToDoListItem {
       if (target && target.classList.contains("item-btn")) {
         const run = this.list.querySelectorAll(".run");
         const stop = this.list.querySelectorAll(".stop");
+        const del = this.list.querySelectorAll(".del");
         run.forEach((item) => {
           if (target == item) {
             item.parentElement.classList.toggle("line-through");

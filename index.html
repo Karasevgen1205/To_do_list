@@ -5,42 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./index.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" integrity="sha384-tKLJeE1ALTUwtXlaGjJYM3sejfssWdAaWR2s97axw4xkiAdMzQjtOjgcyw0Y50KU" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
     <div class="container">
-        <div class="to-do-list to-do-list-1">
-            <h1 class="title">To Do List 1</h1>
-            <from class="form">
-                <input class="input" type="text" placeholder="Enter to do item">
-                <button class="button" type="button">Publish</button>
-            </from>
-            <ol class="list"></ol>
-            <p>Count: <span class="count">0</span></p>
+        <div class="block-btn">
+            <button class="btn-add-new-list" type="button">Add new List</button>
         </div>
-        <div class="to-do-list to-do-list-2">
-            <h1 class="title">To Do List 2</h1>
+        <div class="to-do-list">
+            <div class="to-do-list__header">
+                <h1 class="title">To Do List</h1>
+                <button class="btn-remove-list" type="button">Remove This List</button>
+            </div>
             <from class="form">
                 <input class="input" type="text" placeholder="Enter to do item">
-                <button class="button" type="button">Publish</button>
-            </from>
-            <ol class="list"></ol>
-            <p>Count: <span class="count">0</span></p>
-        </div>
-        <div class="to-do-list to-do-list-3">
-            <h1 class="title">To Do List 3</h1>
-            <from class="form">
-                <input class="input" type="text" placeholder="Enter to do item">
-                <button class="button" type="button">Publish</button>
-            </from>
-            <ol class="list"></ol>
-            <p>Count: <span class="count">0</span></p>
-        </div>
-        <div class="to-do-list to-do-list-4">
-            <h1 class="title">To Do List 4</h1>
-            <from class="form">
-                <input class="input" type="text" placeholder="Enter to do item">
-                <button class="button" type="button">Publish</button>
+                <button class="button publish" type="button">Publish</button>
             </from>
             <ol class="list"></ol>
             <p>Count: <span class="count">0</span></p>
