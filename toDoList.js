@@ -19,11 +19,15 @@ export default class ToDoList {
   }
 
   initToDoList(item) {
-    let countToDo = 0;
+    let countTasksAll = 0;
+    let countTasksActive = 0;
+    let countTasksCompleted = 0;
 
     const input = item.querySelector(".input");
     const btn = item.querySelector(".button");
-    const count = item.querySelector(".count");
+    const countAll = item.querySelector(".count-all");
+    const countActive = item.querySelector(".count-active");
+    const countCompleted = item.querySelector(".count-completed");
     const list = item.querySelector(".list");
     const removeBtn = item.querySelector(".btn-remove-list");
     const toDoListItem = new ToDoListItem(list);
@@ -35,8 +39,10 @@ export default class ToDoList {
         if (input.value != "") {
           toDoListItem.createNewItem(input.value);
           input.value = "";
-          countToDo += 1;
-          count.innerHTML = `${countToDo}`;
+          countTasksAll += 1;
+          countTasksActive += 1;
+          countAll.innerHTML = `${countTasksAll}`;
+          countActive.innerHTML = `${countTasksActive}`;
         }
       }
       if (target && target.classList.contains("btn-remove-list")) {
@@ -53,23 +59,32 @@ export default class ToDoList {
         const del = list.querySelectorAll(".del");
         run.forEach((item) => {
           if (target == item) {
-            countToDo += 1;
-            count.innerHTML = `${countToDo}`;
+            countTasksActive += 1;
+            countActive.innerHTML = `${countTasksActive}`;
+            countTasksCompleted -= 1;
+            countCompleted.innerHTML = `${countTasksCompleted}`;
           }
         });
         stop.forEach((item) => {
           if (target == item) {
-            countToDo -= 1;
-            count.innerHTML = `${countToDo}`;
+            countTasksActive -= 1;
+            countActive.innerHTML = `${countTasksActive}`;
+            countTasksCompleted += 1;
+            countCompleted.innerHTML = `${countTasksCompleted}`;
           }
         });
         del.forEach((item) => {
           if (target == item) {
             if (!item.parentElement.classList.contains("line-through")) {
-              countToDo -= 1;
-              count.innerHTML = `${countToDo}`;
+              countTasksActive -= 1;
+              countActive.innerHTML = `${countTasksActive}`;
+            } else {
+              countTasksCompleted -= 1;
+              countCompleted.innerHTML = `${countTasksCompleted}`;
             }
             toDoListItem.delItem(item);
+            countTasksAll -= 1;
+            countAll.innerHTML = `${countTasksAll}`;
           }
         });
       }
@@ -84,14 +99,16 @@ export default class ToDoList {
         <div class="to-do-list">
           <div class="to-do-list__header">
             <h1 class="title">To Do List</h1>
-            <button class="btn-remove-list" type="button">Remove List</button>
+            <button class="btn-remove-list" type="button">Remove This List</button>
           </div>
           <from class="form">
               <input class="input" type="text" placeholder="Enter to do item">
               <button class="button publish" type="button">Publish</button>
           </from>
           <ol class="list"></ol>
-          <p>Count: <span class="count">0</span></p>
+          <p>Total number of tasks: <span class="count-all">0</span></p>
+            <p>Active tasks: <span class="count-active">0</span></p>
+            <p>Completed tasks: <span class="count-completed">0</span></p>
         </div>
         `
       );

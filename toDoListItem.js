@@ -28,7 +28,6 @@ export default class ToDoListItem {
       if (target && target.classList.contains("item-btn")) {
         const run = this.list.querySelectorAll(".run");
         const stop = this.list.querySelectorAll(".stop");
-        const del = this.list.querySelectorAll(".del");
         run.forEach((item) => {
           if (target == item) {
             item.parentElement.classList.toggle("line-through");
