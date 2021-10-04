@@ -154,3 +154,17 @@ p {
 .line-through {
     text-decoration: line-through;
 }
+
+.count-block {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.timer__time {
+    display: flex;
+}
+
+.timer__time div {
+    margin-right: 5px;
+}

@@ -2,7 +2,7 @@ import ToDoListItem from "./toDoListItem.js";
 
 export default class ToDoList {
   constructor() {
-    this.container = document.querySelector(".container");
+    this.containerWrapper = document.querySelector(".container__wrapper");
     this.addNewList = document.querySelector(".btn-add-new-list");
     this.toDoList = document.querySelectorAll(".to-do-list");
 
@@ -24,15 +24,13 @@ export default class ToDoList {
     let countTasksCompleted = 0;
 
     const input = item.querySelector(".input");
-    const btn = item.querySelector(".button");
     const countAll = item.querySelector(".count-all");
     const countActive = item.querySelector(".count-active");
     const countCompleted = item.querySelector(".count-completed");
     const list = item.querySelector(".list");
-    const removeBtn = item.querySelector(".btn-remove-list");
     const toDoListItem = new ToDoListItem(list);
 
-    this.container.addEventListener("click", (e) => {
+    this.containerWrapper.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
       if (target && target.classList.contains("publish")) {
@@ -50,7 +48,7 @@ export default class ToDoList {
       }
     });
 
-    this.container.addEventListener("click", (e) => {
+    this.containerWrapper.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
       if (target && target.classList.contains("item-btn")) {
@@ -93,7 +91,7 @@ export default class ToDoList {
 
   createNewList() {
     this.addNewList.addEventListener("click", () => {
-      this.container.insertAdjacentHTML(
+      this.containerWrapper.insertAdjacentHTML(
         "beforeend",
         `
         <div class="to-do-list">
@@ -106,9 +104,11 @@ export default class ToDoList {
               <button class="button publish" type="button">Publish</button>
           </from>
           <ol class="list"></ol>
-          <p>Total number of tasks: <span class="count-all">0</span></p>
+          <div class="count-block">
+            <p>Total number of tasks: <span class="count-all">0</span></p>
             <p>Active tasks: <span class="count-active">0</span></p>
             <p>Completed tasks: <span class="count-completed">0</span></p>
+          </div>
         </div>
         `
       );
